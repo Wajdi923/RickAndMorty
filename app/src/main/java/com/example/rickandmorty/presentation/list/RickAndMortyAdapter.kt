@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
 
-class RickAndMortyAdapter(private val dataSet: Array<String>) :
+class RickAndMortyAdapter(private var dataSet: List<Character>) :
     RecyclerView.Adapter<RickAndMortyAdapter.ViewHolder>() {
 
     /**
@@ -23,6 +23,12 @@ class RickAndMortyAdapter(private val dataSet: Array<String>) :
         }
     }
 
+    fun updateList(list:List<Character>){
+        dataSet=list
+        notifyDataSetChanged()
+    }
+
+
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
@@ -37,7 +43,8 @@ class RickAndMortyAdapter(private val dataSet: Array<String>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.textView.text = dataSet[position]
+        val character:Character=dataSet[position]
+        viewHolder.textView.text = character.name
     }
 
     // Return the size of your dataset (invoked by the layout manager)
