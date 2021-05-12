@@ -7,4 +7,13 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/search"
+        android:title="Search"
+        android:icon="@drawable/head"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass= "androidx.appcompat.widget.SearchView"
+        />
 </menu>
