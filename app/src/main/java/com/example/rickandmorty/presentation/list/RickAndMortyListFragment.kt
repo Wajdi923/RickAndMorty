@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
@@ -23,7 +24,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RickAndMortyListFragment : Fragment() {
 
     private lateinit var recyclerView:RecyclerView
-    private val adapter=RickAndMortyAdapter(listOf())
+    private val adapter=RickAndMortyAdapter(listOf(), ::onClickedCharacter)
+
     private val layoutManager=LinearLayoutManager(context)
 
     override fun onCreateView(
@@ -64,14 +66,14 @@ class RickAndMortyListFragment : Fragment() {
 
         })
 
-        val weatherList: ArrayList<Character> = arrayListOf<Character>().apply {
-            add(Character("Paris"))
-            add(Character("London"))
-            add(Character("Mumbai"))
-        }
 
-        adapter.updateList(weatherList)
 
+
+
+    }
+
+    private fun onClickedCharacter(character: Character) {
+        findNavController().navigate(R.id.navigateToRickAndMortyDetailFragment)
 
     }
 }

@@ -7,8 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
 
-class RickAndMortyAdapter(private var dataSet: List<Character>) :
+class RickAndMortyAdapter(private var dataSet: List<Character>,var listener:((Character) -> Unit)?=null) :
     RecyclerView.Adapter<RickAndMortyAdapter.ViewHolder>() {
+
 
     /**
      * Provide a reference to the type of views that you are using
@@ -45,6 +46,10 @@ class RickAndMortyAdapter(private var dataSet: List<Character>) :
         // contents of the view with that element
         val character:Character=dataSet[position]
         viewHolder.textView.text = character.name
+        viewHolder.itemView.setOnClickListener {
+            listener?.invoke(character)
+        }
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
