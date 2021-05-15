@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/RickAndMortyDetailFragment"
-        android:name="com.example.rickandmorty.SecondFragment"
+        android:name="com.example.rickandmorty.presentation.detail.RickAndMortyDetailFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_rickandmorty_detail">
 
         <action
             android:id="@+id/navigateToRickAndMortyListFragment"

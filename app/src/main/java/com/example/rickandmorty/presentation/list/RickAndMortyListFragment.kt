@@ -9,7 +9,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
-import com.example.rickandmorty.presentation.api.CharacterResponse
+import com.example.rickandmorty.presentation.Singletons
+import com.example.rickandmorty.presentation.api.CharacterListResponse
 import com.example.rickandmorty.presentation.api.RickandMortyAPI
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,7 +27,6 @@ class RickAndMortyListFragment : Fragment() {
     private lateinit var recyclerView:RecyclerView
     private val adapter=RickAndMortyAdapter(listOf(), ::onClickedCharacter)
 
-    private val layoutManager=LinearLayoutManager(context)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,25 +42,20 @@ class RickAndMortyListFragment : Fragment() {
         recyclerView=view.findViewById(R.id.rickandmorty_recyclerview)
         recyclerView.apply {
             adapter=this@RickAndMortyListFragment.adapter
-            layoutManager=this@RickAndMortyListFragment.layoutManager
+            layoutManager=LinearLayoutManager(context)
         }
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://rickandmortyapi.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        val rickAndMortyApi: RickandMortyAPI = retrofit.create(RickandMortyAPI::class.java)
 
-        rickAndMortyApi.getCharacterList().enqueue(object :Callback<CharacterResponse>{
-            override fun onResponse(call: Call<CharacterResponse>, response: Response<CharacterResponse>) {
-                if (response.isSuccessful){
-                    val characterResponse:CharacterResponse=response.body()!!
+        Singletons.RickandMortyAPI.getCharacterList().enqueue(object :Callback<CharacterListResponse>{
+            override fun onResponse(call: Call<CharacterListResponse>, response: Response<CharacterListResponse>) {
+                if (response.isSuccessful && response.body()!=null){
+                    val characterResponse:CharacterListResponse=response.body()!!
                     adapter.updateList(characterResponse.results)
                 }
 
             }
 
-            override fun onFailure(call: Call<CharacterResponse>, t: Throwable) {
+            override fun onFailure(call: Call<CharacterListResponse>, t: Throwable) {
 
             }
 
