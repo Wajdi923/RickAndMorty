@@ -9,5 +9,5 @@ interface RickandMortyAPI {
     fun getCharacterList(): Call<CharacterListResponse>
 
     @GET("/api/character/{id}")
-    fun getCharacterDetail(@Path("id")id:String): Call<CharacterDetailResponse>
+    fun getCharacterDetail(@Path("id")id:Int): Call<CharacterDetailResponse>
 }

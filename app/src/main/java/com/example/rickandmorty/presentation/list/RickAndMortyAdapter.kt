@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
+import kotlin.reflect.KFunction1
 
-class RickAndMortyAdapter(private var dataSet: List<Character>,var listener:((Character) -> Unit)?=null) :
-    RecyclerView.Adapter<RickAndMortyAdapter.ViewHolder>() {
+class RickAndMortyAdapter(private var dataSet: List<Character>, var listener: ((Int) -> Unit) ?=null) :RecyclerView.Adapter<RickAndMortyAdapter.ViewHolder>() {
 
 
     /**
@@ -47,7 +47,7 @@ class RickAndMortyAdapter(private var dataSet: List<Character>,var listener:((Ch
         val character:Character=dataSet[position]
         viewHolder.textView.text = character.name
         viewHolder.itemView.setOnClickListener {
-            listener?.invoke(character)
+            listener?.invoke(position)
         }
 
     }

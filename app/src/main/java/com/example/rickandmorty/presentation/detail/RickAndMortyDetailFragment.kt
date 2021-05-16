@@ -19,6 +19,9 @@ import javax.security.auth.callback.Callback
 class RickAndMortyDetailFragment : Fragment() {
 
     private lateinit var textViewName:TextView
+
+
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -34,7 +37,8 @@ class RickAndMortyDetailFragment : Fragment() {
     }
 
     private fun callApi() {
-        Singletons.RickandMortyAPI.getCharacterDetail("2").enqueue(object : retrofit2.Callback<CharacterDetailResponse> {
+        val id=arguments?.getInt("characterId")?:-1
+        Singletons.RickandMortyAPI.getCharacterDetail(id).enqueue(object : retrofit2.Callback<CharacterDetailResponse> {
             override fun onResponse(
                     call: Call<CharacterDetailResponse>,
                     response: Response<CharacterDetailResponse>) {

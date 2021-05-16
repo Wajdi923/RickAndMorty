@@ -20,6 +20,11 @@
         android:name="com.example.rickandmorty.presentation.detail.RickAndMortyDetailFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_rickandmorty_detail">
+        <argument
+            android:name="characterId"
+            app:argType="integer"
+            android:defaultValue="-1"
+            />
 
         <action
             android:id="@+id/navigateToRickAndMortyListFragment"
