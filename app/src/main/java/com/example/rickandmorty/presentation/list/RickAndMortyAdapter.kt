@@ -3,8 +3,10 @@ package com.example.rickandmorty.presentation.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.rickandmorty.R
 import kotlin.reflect.KFunction1
 
@@ -17,10 +19,12 @@ class RickAndMortyAdapter(private var dataSet: List<Character>, var listener: ((
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
+        val imageView:ImageView
 
         init {
             // Define click listener for the ViewHolder's View.
             textView = view.findViewById(R.id.character_name)
+            imageView=view.findViewById(R.id.character_image)
         }
     }
 
@@ -49,6 +53,11 @@ class RickAndMortyAdapter(private var dataSet: List<Character>, var listener: ((
         viewHolder.itemView.setOnClickListener {
             listener?.invoke(position)
         }
+        Glide
+            .with(viewHolder.itemView.context)
+            .load("https://rickandmortyapi.com/api/character/avatar/${position + 1}.jpeg")
+            .centerCrop()
+            .into(viewHolder.imageView);
 
     }
 
