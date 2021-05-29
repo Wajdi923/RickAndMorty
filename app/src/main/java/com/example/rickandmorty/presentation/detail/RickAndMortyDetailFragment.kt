@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.rickandmorty.R
@@ -19,8 +20,8 @@ import javax.security.auth.callback.Callback
 class RickAndMortyDetailFragment : Fragment() {
 
     private lateinit var textViewName:TextView
-
-
+    private lateinit var textViewstatus:TextView
+    private lateinit var textViewgender:TextView
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +34,8 @@ class RickAndMortyDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         textViewName=view.findViewById(R.id.character_detail_name)
+        textViewstatus=view.findViewById(R.id.character_detail_status)
+        textViewgender=view.findViewById(R.id.character_detail_gender)
         callApi()
     }
 
@@ -45,6 +48,8 @@ class RickAndMortyDetailFragment : Fragment() {
 
                 if(response.isSuccessful && response.body() !=null) {
                     textViewName.text = response.body()!!.name
+                    textViewstatus.text = response.body()!!.status
+                    textViewgender.text = response.body()!!.gender
                 }
             }
 

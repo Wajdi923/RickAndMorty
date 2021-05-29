@@ -7,7 +7,7 @@
     tools:context=".SplashScreenActivity">
 
     <ImageView
-        android:id="@+id/icon_bitcoin"
+        android:id="@+id/icon_rickandmorty"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/logo"
@@ -20,7 +20,7 @@
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/icon_bitcoin"
+        app:layout_constraintTop_toBottomOf="@id/icon_rickandmorty"
         android:indeterminate="true"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

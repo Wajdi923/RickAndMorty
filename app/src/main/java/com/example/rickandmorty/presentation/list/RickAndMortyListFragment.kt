@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +26,7 @@ class RickAndMortyListFragment : Fragment() {
 
     private lateinit var recyclerView:RecyclerView
     private val adapter=RickAndMortyAdapter(listOf(), ::onClickedCharacter)
-
+    private val viewModel: RickAndMortyListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,27 +40,14 @@ class RickAndMortyListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView=view.findViewById(R.id.rickandmorty_recyclerview)
+
         recyclerView.apply {
             adapter=this@RickAndMortyListFragment.adapter
             layoutManager=LinearLayoutManager(context)
         }
-
-
-        Singletons.RickandMortyAPI.getCharacterList().enqueue(object :Callback<CharacterListResponse>{
-            override fun onResponse(call: Call<CharacterListResponse>, response: Response<CharacterListResponse>) {
-                if (response.isSuccessful && response.body()!=null){
-                    val characterResponse:CharacterListResponse=response.body()!!
-                    adapter.updateList(characterResponse.results)
-                }
-
-            }
-
-            override fun onFailure(call: Call<CharacterListResponse>, t: Throwable) {
-
-            }
-
+        viewModel.rickandmortyList.observe(viewLifecycleOwner, Observer { list ->
+            adapter.updateList(list)
         })
-
 
 
 
