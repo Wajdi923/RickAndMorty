@@ -11,12 +11,13 @@ import retrofit2.Response
 
 class RickAndMortyListViewModel :ViewModel(){
 
-     val rickandmortyList: MutableLiveData<List<Character>> = MutableLiveData()
+     val rickandmortyList: MutableLiveData<RickAndMortyModel> = MutableLiveData()
 
     init {
         callApi()
     }
     private fun callApi() {
+        rickandmortyList.value=RickAndMortyLoader
         Singletons.RickandMortyAPI.getCharacterList()
             .enqueue(object : Callback<CharacterListResponse> {
                 override fun onResponse(
@@ -25,12 +26,16 @@ class RickAndMortyListViewModel :ViewModel(){
                 ) {
                     if (response.isSuccessful && response.body() != null) {
                         val characterResponse: CharacterListResponse = response.body()!!
-                        rickandmortyList.value=characterResponse.results
+                        rickandmortyList.value=RickAndMortySuccess(characterResponse.results)
+                    }else{
+                        rickandmortyList.value=RickAndMortyError
                     }
 
                 }
 
                 override fun onFailure(call: Call<CharacterListResponse>, t: Throwable) {
+                    rickandmortyList.value=RickAndMortyError
+
 
                 }
 

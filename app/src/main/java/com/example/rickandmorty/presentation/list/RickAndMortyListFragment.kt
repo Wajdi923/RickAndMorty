@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -25,6 +28,10 @@ import retrofit2.Response
 class RickAndMortyListFragment : Fragment() {
 
     private lateinit var recyclerView:RecyclerView
+    private lateinit var loader:ProgressBar
+    private lateinit var textViewError: TextView
+
+
     private val adapter=RickAndMortyAdapter(listOf(), ::onClickedCharacter)
     private val viewModel: RickAndMortyListViewModel by viewModels()
 
@@ -40,13 +47,21 @@ class RickAndMortyListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView=view.findViewById(R.id.rickandmorty_recyclerview)
+        loader=view.findViewById(R.id.rickandmorty_loader)
+        textViewError=view.findViewById(R.id.rickandmorty_error)
 
         recyclerView.apply {
             adapter=this@RickAndMortyListFragment.adapter
             layoutManager=LinearLayoutManager(context)
         }
-        viewModel.rickandmortyList.observe(viewLifecycleOwner, Observer { list ->
-            adapter.updateList(list)
+        viewModel.rickandmortyList.observe(viewLifecycleOwner, Observer { rickandmortyModel ->
+            loader.isVisible=rickandmortyModel is RickAndMortyLoader
+            textViewError.isVisible=rickandmortyModel is RickAndMortyError
+
+                if ( rickandmortyModel is RickAndMortySuccess){
+                    adapter.updateList(rickandmortyModel.rickandmortyList)
+                }
+
         })
 
 
