@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/title1"
-        android:text="Name"
+        android:text="@string/name"
         android:textSize="20sp"
         android:fontFamily="monospace"
         android:textColor="#A92B"
@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/title2"
-        android:text="Status"
+        android:text="@string/status"
         android:textSize="20sp"
         android:fontFamily="monospace"
         android:textColor="#A92B"
@@ -58,7 +58,7 @@
 
     <TextView
         android:id="@+id/title3"
-        android:text="Gender"
+        android:text="@string/gender"
         android:textSize="20sp"
         android:fontFamily="monospace"
         android:textColor="#A92B"
