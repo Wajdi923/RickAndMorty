@@ -22,12 +22,32 @@ L'application gère les erreurs en affichant un message d'erreur lorsque l'appel
 
 ## Aperçu de l'Application
 
+Icone de l'application:
+
 <img src="https://user-images.githubusercontent.com/61593396/120121229-8d096d00-c1a2-11eb-89ed-1d0a303767ba.png" width="20%" height="20%">
+
+SplashScreen:
+
 <img src="https://user-images.githubusercontent.com/61593396/120121234-97c40200-c1a2-11eb-80c5-36e03e0f0e07.png" width="20%" height="20%">
+
+SearchBar:
+
 <img src="https://user-images.githubusercontent.com/61593396/120121240-9c88b600-c1a2-11eb-8935-bbb6040a6b16.png" width="20%" height="20%">
+
+Liste d'éléments (Recycler View):
+
 <img src="https://user-images.githubusercontent.com/61593396/120121244-a01c3d00-c1a2-11eb-8624-b2f4a0c52e0f.png" width="20%" height="20%">
+
+Détail d'un élément:
+
 <img src="https://user-images.githubusercontent.com/61593396/120121258-ad392c00-c1a2-11eb-8df3-ef9106e54e91.png" width="20%" height="20%">
+
+Cache:
+
 <img src="https://user-images.githubusercontent.com/61593396/120121260-af9b8600-c1a2-11eb-90f6-8913598d9651.png" width="20%" height="20%">
+
+Message d'erreur:
+
 <img src="https://user-images.githubusercontent.com/61593396/120121262-b32f0d00-c1a2-11eb-8946-54d25d50934d.png" width="20%" height="20%">
 
 
