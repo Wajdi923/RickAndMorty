@@ -22,6 +22,7 @@ L'application gère les erreurs en affichant un message d'erreur lorsque l'appel
 
 ## Aperçu de l'Application
 ![icone](https://user-images.githubusercontent.com/61593396/120121229-8d096d00-c1a2-11eb-89ed-1d0a303767ba.png)
+img[alt=icone] { width: 200px; }
 ![splashscreen](https://user-images.githubusercontent.com/61593396/120121234-97c40200-c1a2-11eb-80c5-36e03e0f0e07.png)
 ![searchbar](https://user-images.githubusercontent.com/61593396/120121240-9c88b600-c1a2-11eb-8935-bbb6040a6b16.png)
 ![recyclerview](https://user-images.githubusercontent.com/61593396/120121244-a01c3d00-c1a2-11eb-8624-b2f4a0c52e0f.png)
